@@ -14,6 +14,12 @@
         </div>
         <div>
             <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="muster@mann.com" [(ngModel)]="user.email" [disabled]="loading">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="w-100">
                 <mat-label>Birth Date</mat-label>
                 <input matInput [matDatepicker]="picker1" placeholder="5/31/2000" [(ngModel)]="birthDate"
                     [disabled]="loading">
@@ -25,7 +31,7 @@
         <div>
             <mat-form-field class="w-100">
                 <mat-label>Street, Nr.</mat-label>
-                <input matInput placeholder="Rathausstraße 0" [(ngModel)]="user.addresse" [disabled]="loading">
+                <input matInput placeholder="Rathausstraße 0" [(ngModel)]="user.address" [disabled]="loading">
             </mat-form-field>
         </div>
         <div>

@@ -1,0 +1,14 @@
+<mat-card *ngIf="user">
+    <button class="pin-top-right" (click)="onEditUser()" mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>more_vert</mat-icon>
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item>edit</button>
+        </mat-menu>
+    </button>
+
+    <img src="assets/img/avatar.png" alt="Avatar">
+    <div class="user-info">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p>{{user.email}}</p>
+    </div>
+</mat-card>

@@ -1,5 +1,6 @@
 $green: #004f4f;
 $lightGreen: #00dddd;
+$hover: #303030;
 
 html,
 body {
@@ -17,4 +18,10 @@ body {
 
 .w-100 {
     width: 100%;
+}
+
+.pin-top-right {    
+    position: absolute !important;
+    top: 0;
+    right: 0;
 }

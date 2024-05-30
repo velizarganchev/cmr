@@ -1,8 +1,26 @@
+@import '../../styles.scss';
+
 section {
+
+    tr {
+        cursor: pointer;
+
+        &:hover {
+            background-color: $hover;
+        }
+    }
+
+    .mat-mdc-header-row {
+
+        &:hover {
+            cursor: unset;
+            background-color: unset;
+        }
+    }
 
     button {
         position: absolute;
-        bottom: 56px;
-        right: 56px;
+        bottom: 36px;
+        right: 26px;
     }
 }
