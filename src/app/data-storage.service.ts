@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { User } from '../models/user.class';
 import { Observable } from 'rxjs';
 
@@ -34,9 +34,14 @@ export class DataStorageService {
     try {
       const docRef = doc(this.firestore, PATH, id);
       const snapshot = await getDoc(docRef);
-      return snapshot.data() as User;   
+      return snapshot.data() as User;
     } catch (error) {
       return undefined;
     }
+  }
+
+  updateUser(id: string, user: User) {
+    const docRef = doc(this.firestore, PATH, id);
+    return updateDoc(docRef, { ...user });
   }
 }

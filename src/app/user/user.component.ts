@@ -37,7 +37,8 @@ export class UserComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataStorageService) { }
 
   ngOnInit(): void {
-    this.dataSource = this.dataService.getAllUsers();
+    this.dataSource = this.dataService.getAllUsers().pipe(tap(values => console.log(values)
+    ));
   }
 
   onOpenDialog(): void {

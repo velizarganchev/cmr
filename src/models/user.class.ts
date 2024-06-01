@@ -13,8 +13,20 @@ export class User {
         this.lastName = obj ? obj.lastName : '';
         this.email = obj ? obj.email : '';
         this.birthDate = obj ? obj.birthDate : '';
-        this.address = obj ? obj.addresse : '';
+        this.address = obj ? obj.address : '';
         this.zip = obj ? obj.zip : '';
         this.city = obj ? obj.city : '';
+    }
+
+    toJSON() {
+        return {
+            'firstName': this.firstName,
+            'lastName': this.lastName,
+            'email': this.email,
+            'birthDate': this.birthDate,
+            'address': this.address,
+            'zip': this.zip,
+            'city': this.city
+        }
     }
 }

@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 import { ActivatedRoute } from '@angular/router';
 import { DataStorageService } from '../../data-storage.service';
+import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { User } from '../../../models/user.class';
 
 @Component({
   selector: 'app-user-detail',
@@ -18,9 +21,12 @@ import { DataStorageService } from '../../data-storage.service';
 })
 export class UserDetailComponent implements OnInit {
   id = '';
-  user: any = {};
+  user!: User;
 
-  constructor(private route: ActivatedRoute, private dataService: DataStorageService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataStorageService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params =>
@@ -29,12 +35,17 @@ export class UserDetailComponent implements OnInit {
   }
 
   async setUser() {
-    this.user = await this.dataService.getUserById(this.id);
+    this.user = new User(await this.dataService.getUserById(this.id));
   }
 
-  onEditUser(){
-    console.log('EDIT');
-    
+  onEditDialog(): void {
+    const editDialog = this.dialog.open(DialogEditUserComponent);
+    editDialog.componentInstance.user = new User(this.user.toJSON());
+    editDialog.componentInstance.id = this.id;
+
+    editDialog.afterClosed().subscribe(result => {
+      this.user = result;
+    });
   }
 
 }
